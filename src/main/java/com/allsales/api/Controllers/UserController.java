@@ -11,6 +11,11 @@ public class UserController {
     @Autowired
     private UserRepository userRepository;
 
+    @GetMapping
+    public String index(){
+        return "welcome to user page";
+    }
+
     @GetMapping(path="/add")
     public @ResponseBody String addUser(@RequestParam String username, @RequestParam String email){
         User user = new User();
