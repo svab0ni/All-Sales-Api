@@ -6,15 +6,13 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class City{
+public class Contract{
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
     private String name;
-    private String alias;
-    private String zipcode;
-    private String acronym;
+    private String email;
 
     public Integer getId() {
         return id;
@@ -32,27 +30,11 @@ public class City{
         this.name = name;
     }
 
-    public String getAlias() {
-        return alias;
+    public String getEmail() {
+        return email;
     }
 
-    public void setAlias(String alias) {
-        this.alias = alias;
-    }
-
-    public String getZipcode() {
-        return zipcode;
-    }
-
-    public void setZipcode(String zipcode) {
-        this.zipcode = zipcode;
-    }
-
-    public String getAcronym() {
-        return acronym;
-    }
-
-    public void setAcronym(String acronym) {
-        this.acronym = acronym;
+    public void setEmail(String email) {
+        this.email = email;
     }
 }
