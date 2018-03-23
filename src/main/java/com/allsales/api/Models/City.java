@@ -1,11 +1,10 @@
 package com.allsales.api.Models;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.Set;
 
 @Entity
+@Table(name="cities")
 public class City{
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -15,6 +14,7 @@ public class City{
     private String alias;
     private String zipcode;
     private String acronym;
+    private Set<Offer> offers;
 
     public Integer getId() {
         return id;
@@ -54,5 +54,14 @@ public class City{
 
     public void setAcronym(String acronym) {
         this.acronym = acronym;
+    }
+
+    @OneToMany(mappedBy="offerCity", cascade = CascadeType.ALL)
+    public Set<Offer> getOffers(){
+        return offers;
+    }
+
+    public void getOffers(Set<Offer> offers){
+        this.offers = offers;
     }
 }
