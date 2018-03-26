@@ -14,14 +14,48 @@ public class Offer {
     private String alias;
     private String title;
     private String subtitle;
-    private String short_description;
+    private String shortDescription;
     private Boolean published;
     private Boolean processed;
+
+    @ManyToOne
+    @JoinColumn(name = "city_id",foreignKey = @ForeignKey(name = "CITY_ID_FK"))
     private City offerCity;
 
     @ManyToOne
-    @JoinColumn(name="city_id")
+    @JoinColumn(name = "contract_id",foreignKey = @ForeignKey(name = "CONTRACT_ID_FK"))
+    private Contract offerContract;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id",foreignKey = @ForeignKey(name = "USER_ID_FK"))
+    private Contract offerUser;
+
+    public Contract getOfferUser() {
+        return offerUser;
+    }
+
+    public void setOfferUser(Contract offerUser) {
+        this.offerUser = offerUser;
+    }
+
+    public String getShortDescription() {
+        return shortDescription;
+    }
+
+    public void setShortDescription(String shortDescription) {
+        this.shortDescription = shortDescription;
+    }
+
+    public Contract getOfferContract() {
+        return offerContract;
+    }
+
+    public void setOfferContract(Contract offerContract) {
+        this.offerContract = offerContract;
+    }
+
     public City getOfferCity(){
+
         return this.offerCity;
     }
 
@@ -70,11 +104,11 @@ public class Offer {
     }
 
     public String getShort_description() {
-        return short_description;
+        return shortDescription;
     }
 
-    public void setShort_description(String short_description) {
-        this.short_description = short_description;
+    public void setShort_description(String shortDescription) {
+        this.shortDescription = shortDescription;
     }
 
     public Boolean getPublished() {

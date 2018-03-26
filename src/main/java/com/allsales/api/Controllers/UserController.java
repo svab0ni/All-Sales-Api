@@ -1,32 +1,69 @@
 package com.allsales.api.Controllers;
 
-import com.allsales.api.Repositories.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import com.allsales.api.Models.Role;
+import com.allsales.api.Models.RoleName;
 import com.allsales.api.Models.User;
+import com.allsales.api.Repositories.UserRepository;
+import com.allsales.api.security.repository.RoleRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.web.bind.annotation.*;
+import com.allsales.api.security.JwtTokenUtil;
+import com.allsales.api.security.JwtUser;
+
+import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
+import java.util.List;
 
 @RestController
-@RequestMapping(path="/user")
 public class UserController {
+    private final Logger logger = LoggerFactory.getLogger(this.getClass());
+
+    @Value("${jwt.header}")
+    private String tokenHeader;
+
     @Autowired
+    private JwtTokenUtil jwtTokenUtil;
+
+    @Autowired
+    @Qualifier("jwtUserDetailsService")
+    private UserDetailsService userDetailsService;
+    private RoleRepository roleRepository;
     private UserRepository userRepository;
 
-    @GetMapping
-    public String index(){
-        return "welcome to user page";
+    @Autowired
+    public UserController(UserRepository userRepository, RoleRepository roleRepository) {
+        this.userRepository = userRepository;
+        this.roleRepository = roleRepository;
     }
 
-    @GetMapping(path="/add")
-    public @ResponseBody String addUser(@RequestParam String username, @RequestParam String email){
-        User user = new User();
-        user.setEmail(email);
-        user.setName(username);
+    @RequestMapping(value = "user", method = RequestMethod.GET)
+    public JwtUser getAuthenticatedUser(HttpServletRequest request) {
+        String token = request.getHeader(tokenHeader).substring(7);
+        String username = jwtTokenUtil.getUsernameFromToken(token);
+        JwtUser user = (JwtUser) userDetailsService.loadUserByUsername(username);
+        return user;
+    }
+
+    @RequestMapping(value = "register", method = RequestMethod.POST)
+    public ResponseEntity<User> saveUser(@RequestBody User user){
+        List<Role> roles = new ArrayList<Role>();
+
+        Role role = roleRepository.findByName(RoleName.ROLE_USER);
+        roles.add(role);
+
+        user.setEnabled(true);
+        user.setRoles(roles);
+
         userRepository.save(user);
-        return "Saved";
+
+        return new ResponseEntity<>(user, HttpStatus.OK);
     }
 
-    @GetMapping(path="/all")
-    public @ResponseBody Iterable<User> getAllUsers(){
-        return userRepository.findAll();
-    }
 }

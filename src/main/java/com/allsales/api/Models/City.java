@@ -14,7 +14,6 @@ public class City{
     private String alias;
     private String zipcode;
     private String acronym;
-    private Set<Offer> offers;
 
     public Integer getId() {
         return id;
@@ -54,14 +53,5 @@ public class City{
 
     public void setAcronym(String acronym) {
         this.acronym = acronym;
-    }
-
-    @OneToMany(mappedBy="offerCity", cascade = CascadeType.ALL)
-    public Set<Offer> getOffers(){
-        return offers;
-    }
-
-    public void getOffers(Set<Offer> offers){
-        this.offers = offers;
     }
 }
