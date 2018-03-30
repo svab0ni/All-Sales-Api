@@ -56,7 +56,15 @@ public class DatabaseSeeder {
             user.setLastname("dsaad");
             user.setUsername("admin");
             user.setEmail("test@test.com");
-            user.setPassword(new BCryptPasswordEncoder().encode("test123"));
+            user.setPassword("test123"
+
+
+
+
+
+
+
+            );
             user.setRoles(roles);
             user.setEnabled(true);
             userRepository.save(user);

@@ -1,5 +1,7 @@
 package com.allsales.api.Models;
 
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
 import java.util.Date;
 import java.util.List;
 
@@ -89,7 +91,7 @@ public class User {
     }
 
     public void setPassword(String password) {
-        this.password = password;
+        this.password = new BCryptPasswordEncoder().encode(password);
     }
 
     public String getFirstname() {

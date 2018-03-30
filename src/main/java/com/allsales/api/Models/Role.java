@@ -1,5 +1,7 @@
 package com.allsales.api.Models;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.List;
@@ -28,10 +30,12 @@ public class Role {
         this.id = id;
     }
 
+    @JsonProperty("role")
     public RoleName getName() {
         return name;
     }
 
+    @JsonProperty("role")
     public void setName(RoleName name) {
         this.name = name;
     }
