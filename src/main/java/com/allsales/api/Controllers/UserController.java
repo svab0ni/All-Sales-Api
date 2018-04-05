@@ -10,7 +10,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.http.HttpRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -21,7 +20,6 @@ import com.allsales.api.security.JwtUser;
 import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/users")
@@ -57,7 +55,7 @@ public class UserController {
         return new ResponseEntity<>(user, HttpStatus.OK);
     }
 
-    @RequestMapping(value = "register", method = RequestMethod.POST)
+    @RequestMapping(value = "create", method = RequestMethod.POST)
     public ResponseEntity<User> create(@RequestBody User user){
         List<Role> roles = new ArrayList<>();
 
@@ -96,4 +94,9 @@ public class UserController {
         return new ResponseEntity<>(user, HttpStatus.OK);
     }
 
+    @RequestMapping(value = "update", method = RequestMethod.PUT)
+    public ResponseEntity<User> update(@RequestBody User user){
+        
+        return new ResponseEntity<>(user, HttpStatus.OK);
+    }
 }

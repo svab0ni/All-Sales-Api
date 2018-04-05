@@ -8,7 +8,6 @@ import com.allsales.api.security.repository.RoleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.context.event.EventListener;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -56,15 +55,7 @@ public class DatabaseSeeder {
             user.setLastname("dsaad");
             user.setUsername("admin");
             user.setEmail("test@test.com");
-            user.setPassword("test123"
-
-
-
-
-
-
-
-            );
+            user.setPassword("test123");
             user.setRoles(roles);
             user.setEnabled(true);
             userRepository.save(user);

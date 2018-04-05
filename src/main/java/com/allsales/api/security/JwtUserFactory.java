@@ -1,6 +1,5 @@
 package com.allsales.api.security;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import com.allsales.api.Models.Role;
