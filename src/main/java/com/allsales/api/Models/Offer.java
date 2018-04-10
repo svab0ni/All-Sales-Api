@@ -28,13 +28,13 @@ public class Offer {
 
     @ManyToOne
     @JoinColumn(name = "user_id",foreignKey = @ForeignKey(name = "USER_ID_FK"))
-    private Contract offerUser;
+    private User offerUser;
 
-    public Contract getOfferUser() {
+    public User getOfferUser() {
         return offerUser;
     }
 
-    public void setOfferUser(Contract offerUser) {
+    public void setOfferUser(User offerUser) {
         this.offerUser = offerUser;
     }
 
@@ -101,14 +101,6 @@ public class Offer {
 
     public void setSubtitle(String subtitle) {
         this.subtitle = subtitle;
-    }
-
-    public String getShort_description() {
-        return shortDescription;
-    }
-
-    public void setShort_description(String shortDescription) {
-        this.shortDescription = shortDescription;
     }
 
     public Boolean getPublished() {

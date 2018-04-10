@@ -4,7 +4,7 @@ import com.allsales.api.Models.Role;
 import com.allsales.api.Models.RoleName;
 import com.allsales.api.Models.User;
 import com.allsales.api.Repositories.UserRepository;
-import com.allsales.api.security.repository.RoleRepository;
+import com.allsales.api.Repositories.RoleRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

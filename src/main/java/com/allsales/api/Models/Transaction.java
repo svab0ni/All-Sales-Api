@@ -10,5 +10,7 @@ import java.util.List;
 @Entity
 @Table(name = "transactions")
 public class Transaction {
-
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Integer id;
 }

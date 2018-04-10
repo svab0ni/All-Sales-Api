@@ -1,10 +1,9 @@
 package com.allsales.api.Seeders;
 
-import com.allsales.api.Models.Role;
-import com.allsales.api.Models.RoleName;
-import com.allsales.api.Models.User;
-import com.allsales.api.Repositories.UserRepository;
-import com.allsales.api.security.repository.RoleRepository;
+import com.allsales.api.Helpers.Slug;
+import com.allsales.api.Models.*;
+import com.allsales.api.Repositories.*;
+import org.fluttercode.datafactory.impl.DataFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.context.event.EventListener;
@@ -12,22 +11,34 @@ import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 @Component
 public class DatabaseSeeder {
+
     private UserRepository userRepository;
     private RoleRepository roleRepository;
+    private CityRepository cityRepository;
+    private ContractRepository contractRepository;
+    private OfferRepository offerRepository;
 
     @Autowired
-    public DatabaseSeeder(UserRepository userRepository, RoleRepository roleRepository) {
+    public DatabaseSeeder(UserRepository userRepository, RoleRepository roleRepository, CityRepository cityRepository,
+                          ContractRepository contractRepository, OfferRepository offerRepository) {
         this.userRepository = userRepository;
         this.roleRepository = roleRepository;
+        this.cityRepository = cityRepository;
+        this.contractRepository = contractRepository;
+        this.offerRepository = offerRepository;
     }
 
     @EventListener
     public void seed(ContextRefreshedEvent event) {
         seedRolesTable();
         seedUsersTable();
+        seedCitiesTable();
+        seedContractsTable();
+        seedOffersTable();
     }
 
     private void seedRolesTable() {
@@ -61,4 +72,47 @@ public class DatabaseSeeder {
             userRepository.save(user);
     }
 
+    private void seedCitiesTable() {
+        City city = new City();
+
+        city.setName("Sarajevo");
+        city.setAcronym("SA");
+        city.setAlias("sarajevo");
+        city.setZipcode("71000");
+
+        cityRepository.save(city);
+    }
+
+    private void seedContractsTable() {
+        Contract contract = new Contract();
+
+        contract.setEmail("ermin@hotmail.com");
+        contract.setName("Contract");
+
+        contractRepository.save(contract);
+    }
+
+    private void seedOffersTable() {
+        DataFactory dataFactory = new DataFactory();
+        Random random = new Random();
+
+        for(int i = 0; i < 100; i++)
+        {
+            Offer offer = new Offer();
+
+            String title = dataFactory.getRandomText(150);
+            offer.setTitle(title);
+            offer.setAlias(Slug.makeSlug(title));
+            offer.setName(dataFactory.getName());
+            offer.setOfferCity(cityRepository.findByName("Sarajevo"));
+            offer.setOfferContract(contractRepository.findByEmail("ermin@hotmail.com"));
+            offer.setOfferUser(userRepository.findByUsername("admin"));
+            offer.setProcessed(random.nextBoolean());
+            offer.setPublished(random.nextBoolean());
+            offer.setShortDescription(dataFactory.getRandomText(200));
+            offer.setSubtitle(dataFactory.getRandomText(100));
+
+            offerRepository.save(offer);
+        }
+    }
 }
