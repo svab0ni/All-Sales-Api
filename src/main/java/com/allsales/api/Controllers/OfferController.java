@@ -29,15 +29,15 @@ public class OfferController {
         return new ResponseEntity<>(offer, HttpStatus.OK);
     }
 
-    @RequestMapping(value = "delete", method = RequestMethod.DELETE)
-    public HttpStatus destroy(Long id){
+    @RequestMapping(value = "delete/{id}", method = RequestMethod.DELETE)
+    public HttpStatus destroy(@PathVariable("id") Long id){
 
         offerRepository.deleteById(id);
 
         return HttpStatus.OK;
     }
 
-    @RequestMapping(value = "index", method = RequestMethod.POST)
+    @RequestMapping(value = "index", method = RequestMethod.GET)
     public ResponseEntity<List<Offer>> index(){
 
         List<Offer> offers = offerRepository.findAll();

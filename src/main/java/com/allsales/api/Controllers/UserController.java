@@ -70,15 +70,15 @@ public class UserController {
         return new ResponseEntity<>(user, HttpStatus.OK);
     }
 
-    @RequestMapping(value = "delete", method = RequestMethod.DELETE)
-    public HttpStatus destroy(Long id){
+    @RequestMapping(value = "delete/{id}", method = RequestMethod.DELETE)
+    public HttpStatus destroy(@PathVariable("id") Long id){
 
         userRepository.deleteById(id);
 
         return HttpStatus.OK;
     }
 
-    @RequestMapping(value = "index", method = RequestMethod.POST)
+    @RequestMapping(value = "index", method = RequestMethod.GET)
     public ResponseEntity<List<User>> index(){
 
         List<User> users = userRepository.findAll();
@@ -94,9 +94,15 @@ public class UserController {
         return new ResponseEntity<>(user, HttpStatus.OK);
     }
 
-    @RequestMapping(value = "update", method = RequestMethod.PUT)
-    public ResponseEntity<User> update(@RequestBody User user){
-        
-        return new ResponseEntity<>(user, HttpStatus.OK);
+    @RequestMapping(value = "update/{id}", method = RequestMethod.PUT)
+    public ResponseEntity<User> update(@PathVariable("id") Long id, @RequestBody User user){
+        User newUser = userRepository.findUserById(id);
+
+        newUser.setFirstname(user.getFirstname());
+        newUser.setEmail(user.getEmail());
+        newUser.setLastname(user.getLastname());
+
+        userRepository.save(newUser);
+        return new ResponseEntity<>(newUser, HttpStatus.OK);
     }
 }
