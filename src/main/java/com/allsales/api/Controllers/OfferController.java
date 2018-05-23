@@ -73,6 +73,8 @@ public class OfferController {
         newOffer.setShortDescription(offer.getShortDescription());
         newOffer.setOfferCity(city);
         newOffer.setOfferContract(contract);
+        newOffer.setPublished(offer.getPublished());
+        newOffer.setProcessed(offer.getProcessed());
 
         return new ResponseEntity<>(newOffer, HttpStatus.OK);
     }

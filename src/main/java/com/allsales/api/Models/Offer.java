@@ -17,6 +17,7 @@ public class Offer {
     private String shortDescription;
     private Boolean published;
     private Boolean processed;
+    private String imageUrl;
 
     @ManyToOne
     @JoinColumn(name = "city_id",foreignKey = @ForeignKey(name = "CITY_ID_FK"))
@@ -117,5 +118,13 @@ public class Offer {
 
     public void setProcessed(Boolean processed) {
         this.processed = processed;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 }

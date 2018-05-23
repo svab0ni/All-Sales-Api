@@ -120,6 +120,7 @@ public class DatabaseSeeder {
             offer.setPublished(random.nextBoolean());
             offer.setShortDescription(dataFactory.getRandomText(200));
             offer.setSubtitle(dataFactory.getRandomText(100));
+            offer.setImageUrl("https://pbs.twimg.com/profile_images/469017630796296193/R-bEN4UP.png");
 
             offerRepository.save(offer);
         }
