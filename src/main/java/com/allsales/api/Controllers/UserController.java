@@ -70,6 +70,21 @@ public class UserController {
         return new ResponseEntity<>(user, HttpStatus.OK);
     }
 
+    @RequestMapping(value = "createAdmin", method = RequestMethod.POST)
+    public ResponseEntity<User> createAdmin(@RequestBody User user){
+        List<Role> roles = new ArrayList<>();
+
+        Role role = roleRepository.findByName(RoleName.ROLE_ADMIN);
+        roles.add(role);
+
+        user.setEnabled(true);
+        user.setRoles(roles);
+
+        userRepository.save(user);
+
+        return new ResponseEntity<>(user, HttpStatus.OK);
+    }
+
     @RequestMapping(value = "delete/{id}", method = RequestMethod.DELETE)
     public HttpStatus destroy(@PathVariable("id") Long id){
 

@@ -49,6 +49,7 @@ public class JwtAuthorizationTokenFilter extends OncePerRequestFilter {
             }
         } else {
             logger.warn("couldn't find bearer string, will ignore the header");
+            logger.warn(request.getHeader("Authorization"));
         }
 
         logger.debug("checking authentication for user '{}'", username);

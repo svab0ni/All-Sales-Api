@@ -7,6 +7,6 @@ import org.springframework.data.repository.query.Param;
 
 public interface OfferRepository extends JpaRepository<Offer, Long> {
 
-    @Query("SELECT u FROM User AS u where u.id = :id")
+    @Query("SELECT o FROM Offer AS o where o.id = :id")
     Offer findOfferById(@Param("id") Long id);
 }

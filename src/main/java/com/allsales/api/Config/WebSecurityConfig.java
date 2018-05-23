@@ -1,5 +1,7 @@
 package com.allsales.api.Config;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -20,12 +22,17 @@ import com.allsales.api.security.JwtAuthenticationEntryPoint;
 import com.allsales.api.security.JwtAuthorizationTokenFilter;
 import com.allsales.api.security.JwtTokenUtil;
 import com.allsales.api.security.service.JwtUserDetailsService;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsConfigurationSource;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+import java.util.ArrayList;
 
 @Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
+    private final Logger logger = LoggerFactory.getLogger(this.getClass());
     @Autowired
     private JwtAuthenticationEntryPoint unauthorizedHandler;
 
@@ -53,6 +60,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         return new BCryptPasswordEncoder();
     }
 
+
     @Bean
     @Override
     public AuthenticationManager authenticationManagerBean() throws Exception {
@@ -62,9 +70,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity httpSecurity) throws Exception {
         httpSecurity
-                // we don't need CSRF because our token is invulnerable
+                .cors().and()
                 .csrf().disable()
-
                 .exceptionHandling().authenticationEntryPoint(unauthorizedHandler).and()
 
                 // don't create session
@@ -78,6 +85,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/**/login").permitAll()
                 .antMatchers("/**/register").permitAll()
                 .antMatchers("/offers/index").permitAll()
+                .antMatchers(HttpMethod.OPTIONS).permitAll()
                 .anyRequest().authenticated();
 
         // Custom JWT based Security filter
@@ -90,6 +98,36 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .headers()
                 .frameOptions().sameOrigin()  // required to set for H2 else H2 Console will be blank.
                 .cacheControl();
+    }
+
+    @Bean
+    public CorsConfigurationSource corsConfigurationSource() {
+        logger.warn("TEK DOSAO");
+        ArrayList<String> arr = new ArrayList<>();
+        ArrayList<String> arr1 = new ArrayList<>();
+        ArrayList<String> arr2 = new ArrayList<>();
+
+        arr.add("*");
+        arr1.add("HEAD");
+        arr1.add("GET");
+        arr1.add("POST");
+        arr1.add("PUT");
+        arr1.add("DELETE");
+        arr1.add("PATCH");
+        arr1.add("OPTIONS");
+        arr2.add("Authorization");
+        arr2.add("Cache-Control");
+        arr2.add("Content-Type");
+
+        final CorsConfiguration configuration = new CorsConfiguration();
+        configuration.setAllowedOrigins(arr);
+        configuration.setAllowedMethods(arr1);
+        configuration.setAllowCredentials(true);
+        configuration.setAllowedHeaders(arr2);
+        final UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        source.registerCorsConfiguration("/**", configuration);
+        logger.warn("ODLAZIM");
+        return source;
     }
 
     @Override
