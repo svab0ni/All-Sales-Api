@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping ("/contract")
+@RequestMapping ("/contracts")
 public class ContractController {
 
     private ContractRepository contractRepository;

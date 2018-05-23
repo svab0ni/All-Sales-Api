@@ -73,14 +73,23 @@ public class DatabaseSeeder {
     }
 
     private void seedCitiesTable() {
-        City city = new City();
+        City city1 = new City();
 
-        city.setName("Sarajevo");
-        city.setAcronym("SA");
-        city.setAlias("sarajevo");
-        city.setZipcode("71000");
+        city1.setName("Sarajevo");
+        city1.setAcronym("SA");
+        city1.setAlias("sarajevo");
+        city1.setZipcode("71000");
 
-        cityRepository.save(city);
+        cityRepository.save(city1);
+
+        City city2 = new City();
+
+        city2.setName("Mostar");
+        city2.setAcronym("MO");
+        city2.setAlias("Mostar");
+        city2.setZipcode("71000");
+
+        cityRepository.save(city2);
     }
 
     private void seedContractsTable() {

@@ -1,7 +1,12 @@
 package com.allsales.api.Controllers;
 
+import com.allsales.api.Models.City;
+import com.allsales.api.Models.Contract;
 import com.allsales.api.Models.Offer;
+import com.allsales.api.Repositories.CityRepository;
+import com.allsales.api.Repositories.ContractRepository;
 import com.allsales.api.Repositories.OfferRepository;
+import com.allsales.api.Requests.UpdateOfferRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,10 +19,14 @@ import java.util.List;
 public class OfferController {
 
     private OfferRepository offerRepository;
+    private CityRepository cityRepository;
+    private ContractRepository contractRepository;
 
     @Autowired
-    public OfferController(OfferRepository offerRepository){
+    public OfferController(OfferRepository offerRepository, CityRepository cityRepository, ContractRepository contractRepository){
         this.offerRepository = offerRepository;
+        this.cityRepository = cityRepository;
+        this.contractRepository = contractRepository;
     }
 
 
@@ -53,9 +62,18 @@ public class OfferController {
         return new ResponseEntity<>(offer, HttpStatus.OK);
     }
 
-    @RequestMapping(value = "update", method = RequestMethod.PUT)
-    public ResponseEntity<Offer> update(@RequestBody Offer offer){
+    @RequestMapping(value = "update/{id}", method = RequestMethod.PUT)
+    public ResponseEntity<Offer> update(@PathVariable("id") Long id, @RequestBody UpdateOfferRequest offer){
+        Offer newOffer = offerRepository.findOfferById(id);
+        City city = cityRepository.findCityById(offer.getCityId());
+        Contract contract = contractRepository.findContractById(offer.getContractId());
 
-        return new ResponseEntity<>(offer, HttpStatus.OK);
+        newOffer.setSubtitle(offer.getSubtitle());
+        newOffer.setTitle(offer.getTitle());
+        newOffer.setShortDescription(offer.getShortDescription());
+        newOffer.setOfferCity(city);
+        newOffer.setOfferContract(contract);
+
+        return new ResponseEntity<>(newOffer, HttpStatus.OK);
     }
 }

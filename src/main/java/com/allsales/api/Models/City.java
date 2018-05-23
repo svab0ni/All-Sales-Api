@@ -4,7 +4,6 @@ import javax.persistence.*;
 import java.util.Set;
 
 @Entity
-@Table(name="cities")
 public class City{
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

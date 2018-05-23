@@ -11,7 +11,7 @@ import java.util.List;
 
 
 @RestController
-@RequestMapping("/city")
+@RequestMapping("/cities")
 public class CityController {
 
     private CityRepository cityRepository;
@@ -39,10 +39,10 @@ public class CityController {
     }
 
 
-    @RequestMapping(value = "find/{name}", method = RequestMethod.GET)
-    public ResponseEntity<City> find(@PathVariable String name){
+    @RequestMapping(value = "find/{id}", method = RequestMethod.GET)
+    public ResponseEntity<City> find(@PathVariable Long id){
 
-        City city = cityRepository.findByName(name);
+        City city = cityRepository.findCityById(id);
 
         return new ResponseEntity<>(city, HttpStatus.OK);
     }
