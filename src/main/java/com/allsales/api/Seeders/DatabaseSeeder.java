@@ -217,7 +217,7 @@ public class DatabaseSeeder {
             offer.setImageUrl("https://www.ekupon.ba/media/images/offer-image-5965_6_orig.jpg?v=1527076947");
             offer.setCurrentPrice(500);
             offer.setPreviousPrice(600);
-            
+
             offerRepository.save(offer);
         }
     }

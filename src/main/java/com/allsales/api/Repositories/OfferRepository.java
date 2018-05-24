@@ -13,4 +13,5 @@ public interface OfferRepository extends JpaRepository<Offer, Long> {
     Offer findOfferById(@Param("id") Long id);
 
     List<Offer> findByTitleIgnoreCaseContaining(@Param("q") String q);
+    List<Offer> findAllByOrderByIdDesc();
 }

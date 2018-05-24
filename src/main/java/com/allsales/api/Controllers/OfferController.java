@@ -70,7 +70,7 @@ public class OfferController {
     @RequestMapping(value = "index", method = RequestMethod.GET)
     public ResponseEntity<List<Offer>> index(){
 
-        List<Offer> offers = offerRepository.findAll();
+        List<Offer> offers = offerRepository.findAllByOrderByIdDesc();
 
         return new ResponseEntity<>(offers, HttpStatus.OK);
     }
@@ -98,6 +98,8 @@ public class OfferController {
         newOffer.setProcessed(offer.getProcessed());
         newOffer.setImageUrl(offer.getImageUrl());
         newOffer.setName(offer.getName());
+        newOffer.setPreviousPrice(offer.getPreviousPrice());
+        newOffer.setCurrentPrice(offer.getCurrentPrice());
         newOffer.setAlias(Slug.makeSlug(offer.getTitle()));
 
         offerRepository.save(newOffer);
