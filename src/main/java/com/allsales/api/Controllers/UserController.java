@@ -120,4 +120,12 @@ public class UserController {
         userRepository.save(newUser);
         return new ResponseEntity<>(newUser, HttpStatus.OK);
     }
+
+    @RequestMapping(value = "search/{q}", method = RequestMethod.GET)
+    public ResponseEntity<List<User>> search(@PathVariable String q){
+
+        List<User> users = userRepository.findByUsernameIgnoreCaseContaining(q);
+
+        return new ResponseEntity<>(users, HttpStatus.OK);
+    }
 }

@@ -1,5 +1,6 @@
 package com.allsales.api.Controllers;
 
+import com.allsales.api.Helpers.Slug;
 import com.allsales.api.Models.City;
 import com.allsales.api.Repositories.CityRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +24,8 @@ public class CityController {
     @RequestMapping(value = "create" , method = RequestMethod.POST)
     public ResponseEntity<City> create(@RequestBody City city)
     {
+        city.setAlias(Slug.makeSlug(city.getName()));
+
         cityRepository.save(city);
 
         return new ResponseEntity<>(city, HttpStatus.OK);
@@ -56,13 +59,29 @@ public class CityController {
         return new ResponseEntity<>(cities, HttpStatus.OK);
     }
 
-    @RequestMapping(value = "update", method = RequestMethod.PUT)
-    public ResponseEntity<City> update(@RequestBody City city){
+    @RequestMapping(value = "update/{id}", method = RequestMethod.PUT)
+    public ResponseEntity<City> update(@PathVariable Long id, @RequestBody City city){
+        City newCity = cityRepository.findCityById(id);
+
+        newCity.setZipcode(city.getZipcode());
+        newCity.setAcronym(city.getAcronym());
+        newCity.setName(city.getName());
+        newCity.setAlias(Slug.makeSlug(city.getName()));
+
+        cityRepository.save(newCity);
 
         return new ResponseEntity<>(city, HttpStatus.OK);
     }
 
     @RequestMapping("/bezze")
     public String citi(){ return "Welcome to the city controller"; }
+
+    @RequestMapping(value = "search/{q}", method = RequestMethod.GET)
+    public ResponseEntity<List<City>> search(@PathVariable String q){
+
+        List<City> cities = cityRepository.findByNameIgnoreCaseContaining(q);
+
+        return new ResponseEntity<>(cities, HttpStatus.OK);
+    }
 
 }

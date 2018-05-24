@@ -39,10 +39,10 @@ public class ContractController {
     }
 
 
-    @RequestMapping(value = "find/{email}", method = RequestMethod.GET)
-    public ResponseEntity<Contract> find(@PathVariable String email){
+    @RequestMapping(value = "find/{id}", method = RequestMethod.GET)
+    public ResponseEntity<Contract> find(@PathVariable Long id){
 
-        Contract contract = contractRepository.findByEmail(email);
+        Contract contract = contractRepository.findContractById(id);
 
         return new ResponseEntity<>(contract, HttpStatus.OK);
     }
@@ -56,12 +56,24 @@ public class ContractController {
         return new ResponseEntity<>(contracts, HttpStatus.OK);
     }
 
-    @RequestMapping(value = "update", method = RequestMethod.PUT)
-    public ResponseEntity<Contract> update(@RequestBody Contract contract){
+    @RequestMapping(value = "update/{id}", method = RequestMethod.PUT)
+    public ResponseEntity<Contract> update(@PathVariable Long id, @RequestBody Contract contract){
+
+        Contract newContract = contractRepository.findContractById(id);
+
+        newContract.setName(contract.getName());
+        newContract.setEmail(contract.getEmail());
+
+        contractRepository.save(newContract);
 
         return new ResponseEntity<>(contract, HttpStatus.OK);
     }
 
+    @RequestMapping(value = "search/{q}", method = RequestMethod.GET)
+    public ResponseEntity<List<Contract>> search(@PathVariable String q){
 
+        List<Contract> contracts = contractRepository.findByNameIgnoreCaseContaining(q);
 
+        return new ResponseEntity<>(contracts, HttpStatus.OK);
+    }
 }

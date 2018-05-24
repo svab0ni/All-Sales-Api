@@ -104,4 +104,12 @@ public class OfferController {
 
         return new ResponseEntity<>(newOffer, HttpStatus.OK);
     }
+
+    @RequestMapping(value = "search/{q}", method = RequestMethod.GET)
+    public ResponseEntity<List<Offer>> search(@PathVariable String q){
+
+        List<Offer> offers = offerRepository.findByTitleIgnoreCaseContaining(q);
+
+        return new ResponseEntity<>(offers, HttpStatus.OK);
+    }
 }
