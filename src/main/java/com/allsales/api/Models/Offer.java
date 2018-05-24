@@ -47,6 +47,30 @@ public class Offer {
     @NotNull
     private String imageUrl;
 
+    @Column(name = "currentPrice", length = 500)
+    @NotNull
+    private Integer currentPrice;
+
+    public Integer getCurrentPrice() {
+        return currentPrice;
+    }
+
+    public void setCurrentPrice(Integer currentPrice) {
+        this.currentPrice = currentPrice;
+    }
+
+    public Integer getPreviousPrice() {
+        return previousPrice;
+    }
+
+    public void setPreviousPrice(Integer previousPrice) {
+        this.previousPrice = previousPrice;
+    }
+
+    @Column(name = "previousPrice", length = 500)
+    @NotNull
+    private Integer previousPrice;
+
     @ManyToOne
     @JoinColumn(name = "city_id",foreignKey = @ForeignKey(name = "CITY_ID_FK"))
     private City offerCity;

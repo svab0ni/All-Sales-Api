@@ -119,6 +119,8 @@ public class DatabaseSeeder {
         offer1.setShortDescription("Pogledajte ponudu moderno obnovljenih Port 9 apartmana na otoku Korčuli i odaberite interijer po svom ukusu. U mirnoj uvali Zaljeva školjki uživajte u mirisima Mediterana okruženi maslinicima i zelenilom s pogledom na Jadransko more. Ljenčarite na plaži, okušajte se u nekom od sportova ili jednostavno prepustite ležernoj zabavi. Uživajte u čaši korčulanskog vina, isprobajte morske delicije uz kapljicu božanskog maslinovog ulja i stvorite trajne uspomene na otok koji inspirira.");
         offer1.setSubtitle("Odaberite tri noćenja za dvije osobe i dvoje djece s doručkom u modernim Apartmanima Port 9 uz mogućnost plaćanja na rate!");
         offer1.setImageUrl("https://www.ekupon.ba/media/images/offer-image-5965_2_orig.jpg?v=1527076895");
+        offer1.setCurrentPrice(500);
+        offer1.setPreviousPrice(600);
 
         offerRepository.save(offer1);
 
@@ -136,6 +138,8 @@ public class DatabaseSeeder {
         offer2.setShortDescription("Pogledajte ponudu moderno obnovljenih Port 9 apartmana na otoku Korčuli i odaberite interijer po svom ukusu. U mirnoj uvali Zaljeva školjki uživajte u mirisima Mediterana okruženi maslinicima i zelenilom s pogledom na Jadransko more. Ljenčarite na plaži, okušajte se u nekom od sportova ili jednostavno prepustite ležernoj zabavi. Uživajte u čaši korčulanskog vina, isprobajte morske delicije uz kapljicu božanskog maslinovog ulja i stvorite trajne uspomene na otok koji inspirira.");
         offer2.setSubtitle("Odaberite tri noćenja za dvije osobe i dvoje djece s doručkom u modernim Apartmanima Port 9 uz mogućnost plaćanja na rate!");
         offer2.setImageUrl("https://www.ekupon.ba/media/images/offer-image-5965_1_orig.jpg?v=1527076888");
+        offer2.setCurrentPrice(500);
+        offer2.setPreviousPrice(600);
 
         offerRepository.save(offer2);
 
@@ -153,6 +157,8 @@ public class DatabaseSeeder {
         offer3.setShortDescription("Pogledajte ponudu moderno obnovljenih Port 9 apartmana na otoku Korčuli i odaberite interijer po svom ukusu. U mirnoj uvali Zaljeva školjki uživajte u mirisima Mediterana okruženi maslinicima i zelenilom s pogledom na Jadransko more. Ljenčarite na plaži, okušajte se u nekom od sportova ili jednostavno prepustite ležernoj zabavi. Uživajte u čaši korčulanskog vina, isprobajte morske delicije uz kapljicu božanskog maslinovog ulja i stvorite trajne uspomene na otok koji inspirira.");
         offer3.setSubtitle("Odaberite tri noćenja za dvije osobe i dvoje djece s doručkom u modernim Apartmanima Port 9 uz mogućnost plaćanja na rate!");
         offer3.setImageUrl("https://www.ekupon.ba/media/images/offer-image-5965_1_orig.jpg?v=1527076888");
+        offer3.setCurrentPrice(500);
+        offer3.setPreviousPrice(600);
 
         offerRepository.save(offer3);
 
@@ -170,6 +176,9 @@ public class DatabaseSeeder {
         offer4.setShortDescription("Pogledajte ponudu moderno obnovljenih Port 9 apartmana na otoku Korčuli i odaberite interijer po svom ukusu. U mirnoj uvali Zaljeva školjki uživajte u mirisima Mediterana okruženi maslinicima i zelenilom s pogledom na Jadransko more. Ljenčarite na plaži, okušajte se u nekom od sportova ili jednostavno prepustite ležernoj zabavi. Uživajte u čaši korčulanskog vina, isprobajte morske delicije uz kapljicu božanskog maslinovog ulja i stvorite trajne uspomene na otok koji inspirira.");
         offer4.setSubtitle("Odaberite tri noćenja za dvije osobe i dvoje djece s doručkom u modernim Apartmanima Port 9 uz mogućnost plaćanja na rate!");
         offer4.setImageUrl("https://www.ekupon.ba/media/images/offer-image-5965_3_orig.jpg?v=1527076938");
+        offer4.setCurrentPrice(500);
+        offer4.setPreviousPrice(600);
+
         offerRepository.save(offer4);
 
         Offer offer5 = new Offer();
@@ -186,6 +195,8 @@ public class DatabaseSeeder {
         offer5.setShortDescription("Pogledajte ponudu moderno obnovljenih Port 9 apartmana na otoku Korčuli i odaberite interijer po svom ukusu. U mirnoj uvali Zaljeva školjki uživajte u mirisima Mediterana okruženi maslinicima i zelenilom s pogledom na Jadransko more. Ljenčarite na plaži, okušajte se u nekom od sportova ili jednostavno prepustite ležernoj zabavi. Uživajte u čaši korčulanskog vina, isprobajte morske delicije uz kapljicu božanskog maslinovog ulja i stvorite trajne uspomene na otok koji inspirira.");
         offer5.setSubtitle("Odaberite tri noćenja za dvije osobe i dvoje djece s doručkom u modernim Apartmanima Port 9 uz mogućnost plaćanja na rate!");
         offer5.setImageUrl("https://www.ekupon.ba/media/images/offer-image-5965_4_orig.jpg?v=1527076943");
+        offer5.setCurrentPrice(500);
+        offer5.setPreviousPrice(600);
 
         offerRepository.save(offer5);
 
@@ -204,7 +215,9 @@ public class DatabaseSeeder {
             offer.setShortDescription(dataFactory.getRandomText(200));
             offer.setSubtitle(dataFactory.getRandomText(100));
             offer.setImageUrl("https://www.ekupon.ba/media/images/offer-image-5965_6_orig.jpg?v=1527076947");
-
+            offer.setCurrentPrice(500);
+            offer.setPreviousPrice(600);
+            
             offerRepository.save(offer);
         }
     }
