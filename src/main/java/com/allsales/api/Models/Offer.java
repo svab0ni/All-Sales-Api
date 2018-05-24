@@ -1,5 +1,7 @@
 package com.allsales.api.Models;
 
+import org.hibernate.annotations.Cascade;
+
 import javax.persistence.*;
 
 @Entity

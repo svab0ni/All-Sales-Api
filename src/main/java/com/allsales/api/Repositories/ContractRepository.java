@@ -8,6 +8,7 @@ import org.springframework.data.repository.query.Param;
 
 public interface ContractRepository extends JpaRepository<Contract, Long> {
     Contract findByEmail(String email);
+    Contract findByName(String name);
 
     @Query("SELECT c FROM Contract AS c where c.id = :id")
     Contract findContractById(@Param("id") Long id);
