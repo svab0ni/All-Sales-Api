@@ -12,6 +12,6 @@ public interface OfferRepository extends JpaRepository<Offer, Long> {
     @Query("SELECT o FROM Offer AS o where o.id = :id")
     Offer findOfferById(@Param("id") Long id);
 
-    List<Offer> findByTitleIgnoreCaseContaining(@Param("q") String q);
+    List<Offer> findByTitleIgnoreCaseContainingOrderByIdDesc(@Param("q") String q);
     List<Offer> findAllByOrderByIdDesc();
 }
