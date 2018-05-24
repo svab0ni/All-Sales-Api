@@ -25,6 +25,10 @@ import com.allsales.api.security.service.JwtUserDetailsService;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
+
 import java.util.ArrayList;
 
 @Configuration
@@ -82,7 +86,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 // Un-secure H2 Database
                 .antMatchers("/h2-console/**/**").permitAll()
 
-                .antMatchers("/**/login").permitAll()
+                .antMatchers("/users/login").permitAll()
                 .antMatchers("/**/register").permitAll()
                 .antMatchers("/offers/index").permitAll()
                 .antMatchers(HttpMethod.OPTIONS).permitAll()
@@ -106,7 +110,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
-        logger.warn("TEK DOSAO");
         ArrayList<String> arr = new ArrayList<>();
         ArrayList<String> arr1 = new ArrayList<>();
         ArrayList<String> arr2 = new ArrayList<>();
@@ -130,8 +133,16 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         configuration.setAllowedHeaders(arr2);
         final UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", configuration);
-        logger.warn("ODLAZIM");
         return source;
+    }
+    @Bean
+    public WebMvcConfigurer corsConfigurer() {
+        return new WebMvcConfigurerAdapter() {
+            @Override
+            public void addCorsMappings(CorsRegistry registry) {
+                registry.addMapping("/**").allowedOrigins("http://localhost:8081");
+            }
+        };
     }
 
     @Override
