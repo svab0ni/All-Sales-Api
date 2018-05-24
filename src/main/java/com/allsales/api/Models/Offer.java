@@ -1,8 +1,11 @@
 package com.allsales.api.Models;
 
 import org.hibernate.annotations.Cascade;
+import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name="offers")
@@ -12,13 +15,36 @@ public class Offer {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    @Column(name = "name", length = 50)
+    @NotNull
     private String name;
+
+    @Column(name = "alias", length = 500)
+    @NotNull
     private String alias;
+
+    @Column(name = "title", length = 500)
+    @NotNull
     private String title;
+
+    @Column(name = "subtitle", length = 500)
+    @NotNull
     private String subtitle;
+
+    @Column(name = "shortDescription", length = 500)
+    @NotNull
     private String shortDescription;
+
+    @Column(name = "published", length = 1)
+    @NotNull
     private Boolean published;
+
+    @Column(name = "processed", length = 1)
+    @NotNull
     private Boolean processed;
+
+    @Column(name = "imageUrl", length = 500)
+    @NotNull
     private String imageUrl;
 
     @ManyToOne
