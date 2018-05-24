@@ -105,13 +105,88 @@ public class DatabaseSeeder {
         DataFactory dataFactory = new DataFactory();
         Random random = new Random();
 
-        for(int i = 0; i < 100; i++)
+        Offer offer1 = new Offer();
+
+        String title = "Vaše mjesto za raskošan odmor: Četverodnevno uživanje za dvije odrasle osobe i dvoje djece u Port 9 Apartmanima";
+        offer1.setTitle(title);
+        offer1.setAlias(Slug.makeSlug(title));
+        offer1.setName("HTP Korčula d.d.");
+        offer1.setOfferCity(cityRepository.findByName("Sarajevo"));
+        offer1.setOfferContract(contractRepository.findByEmail("ermin@hotmail.com"));
+        offer1.setOfferUser(userRepository.findByUsername("admin"));
+        offer1.setProcessed(true);
+        offer1.setPublished(true);
+        offer1.setShortDescription("Pogledajte ponudu moderno obnovljenih Port 9 apartmana na otoku Korčuli i odaberite interijer po svom ukusu. U mirnoj uvali Zaljeva školjki uživajte u mirisima Mediterana okruženi maslinicima i zelenilom s pogledom na Jadransko more. Ljenčarite na plaži, okušajte se u nekom od sportova ili jednostavno prepustite ležernoj zabavi. Uživajte u čaši korčulanskog vina, isprobajte morske delicije uz kapljicu božanskog maslinovog ulja i stvorite trajne uspomene na otok koji inspirira.");
+        offer1.setSubtitle("Odaberite tri noćenja za dvije osobe i dvoje djece s doručkom u modernim Apartmanima Port 9 uz mogućnost plaćanja na rate!");
+        offer1.setImageUrl("https://www.ekupon.ba/media/images/offer-image-5965_2_orig.jpg?v=1527076895");
+
+        Offer offer2 = new Offer();
+
+        String title2 = "Vaše mjesto za raskošan odmor: Četverodnevno uživanje za dvije odrasle osobe i dvoje djece u Port 9 Apartmanima";
+        offer2.setTitle(title2);
+        offer2.setAlias(Slug.makeSlug(title2));
+        offer2.setName("HTP Korčula d.d.");
+        offer2.setOfferCity(cityRepository.findByName("Sarajevo"));
+        offer2.setOfferContract(contractRepository.findByEmail("ermin@hotmail.com"));
+        offer2.setOfferUser(userRepository.findByUsername("admin"));
+        offer2.setProcessed(true);
+        offer2.setPublished(true);
+        offer2.setShortDescription("Pogledajte ponudu moderno obnovljenih Port 9 apartmana na otoku Korčuli i odaberite interijer po svom ukusu. U mirnoj uvali Zaljeva školjki uživajte u mirisima Mediterana okruženi maslinicima i zelenilom s pogledom na Jadransko more. Ljenčarite na plaži, okušajte se u nekom od sportova ili jednostavno prepustite ležernoj zabavi. Uživajte u čaši korčulanskog vina, isprobajte morske delicije uz kapljicu božanskog maslinovog ulja i stvorite trajne uspomene na otok koji inspirira.");
+        offer2.setSubtitle("Odaberite tri noćenja za dvije osobe i dvoje djece s doručkom u modernim Apartmanima Port 9 uz mogućnost plaćanja na rate!");
+        offer2.setImageUrl("https://www.ekupon.ba/media/images/offer-image-5965_1_orig.jpg?v=1527076888");
+
+        Offer offer3 = new Offer();
+
+        String title3 = "Vaše mjesto za raskošan odmor: Četverodnevno uživanje za dvije odrasle osobe i dvoje djece u Port 9 Apartmanima";
+        offer3.setTitle(title3);
+        offer3.setAlias(Slug.makeSlug(title3));
+        offer3.setName("HTP Korčula d.d.");
+        offer3.setOfferCity(cityRepository.findByName("Sarajevo"));
+        offer3.setOfferContract(contractRepository.findByEmail("ermin@hotmail.com"));
+        offer3.setOfferUser(userRepository.findByUsername("admin"));
+        offer3.setProcessed(true);
+        offer3.setPublished(true);
+        offer3.setShortDescription("Pogledajte ponudu moderno obnovljenih Port 9 apartmana na otoku Korčuli i odaberite interijer po svom ukusu. U mirnoj uvali Zaljeva školjki uživajte u mirisima Mediterana okruženi maslinicima i zelenilom s pogledom na Jadransko more. Ljenčarite na plaži, okušajte se u nekom od sportova ili jednostavno prepustite ležernoj zabavi. Uživajte u čaši korčulanskog vina, isprobajte morske delicije uz kapljicu božanskog maslinovog ulja i stvorite trajne uspomene na otok koji inspirira.");
+        offer3.setSubtitle("Odaberite tri noćenja za dvije osobe i dvoje djece s doručkom u modernim Apartmanima Port 9 uz mogućnost plaćanja na rate!");
+        offer3.setImageUrl("https://www.ekupon.ba/media/images/offer-image-5965_1_orig.jpg?v=1527076888");
+
+        Offer offer4 = new Offer();
+
+        String title4 = "Vaše mjesto za raskošan odmor: Četverodnevno uživanje za dvije odrasle osobe i dvoje djece u Port 9 Apartmanima";
+        offer4.setTitle(title4);
+        offer4.setAlias(Slug.makeSlug(title4));
+        offer4.setName("HTP Korčula d.d.");
+        offer4.setOfferCity(cityRepository.findByName("Sarajevo"));
+        offer4.setOfferContract(contractRepository.findByEmail("ermin@hotmail.com"));
+        offer4.setOfferUser(userRepository.findByUsername("admin"));
+        offer4.setProcessed(true);
+        offer4.setPublished(true);
+        offer4.setShortDescription("Pogledajte ponudu moderno obnovljenih Port 9 apartmana na otoku Korčuli i odaberite interijer po svom ukusu. U mirnoj uvali Zaljeva školjki uživajte u mirisima Mediterana okruženi maslinicima i zelenilom s pogledom na Jadransko more. Ljenčarite na plaži, okušajte se u nekom od sportova ili jednostavno prepustite ležernoj zabavi. Uživajte u čaši korčulanskog vina, isprobajte morske delicije uz kapljicu božanskog maslinovog ulja i stvorite trajne uspomene na otok koji inspirira.");
+        offer4.setSubtitle("Odaberite tri noćenja za dvije osobe i dvoje djece s doručkom u modernim Apartmanima Port 9 uz mogućnost plaćanja na rate!");
+        offer4.setImageUrl("https://www.ekupon.ba/media/images/offer-image-5965_3_orig.jpg?v=1527076938");
+
+        Offer offer5 = new Offer();
+
+        String title5 = "Vrijeme je da zaboravite na sve obaveze i uputite se na dvodnevnu relaksaciju u luksuznom SPA centru Etno sela ČARDACI!";
+        offer5.setTitle(title5);
+        offer5.setAlias(Slug.makeSlug(title5));
+        offer5.setName("HTP Korčula d.d.");
+        offer5.setOfferCity(cityRepository.findByName("Sarajevo"));
+        offer5.setOfferContract(contractRepository.findByEmail("ermin@hotmail.com"));
+        offer5.setOfferUser(userRepository.findByUsername("admin"));
+        offer5.setProcessed(true);
+        offer5.setPublished(true);
+        offer5.setShortDescription("Pogledajte ponudu moderno obnovljenih Port 9 apartmana na otoku Korčuli i odaberite interijer po svom ukusu. U mirnoj uvali Zaljeva školjki uživajte u mirisima Mediterana okruženi maslinicima i zelenilom s pogledom na Jadransko more. Ljenčarite na plaži, okušajte se u nekom od sportova ili jednostavno prepustite ležernoj zabavi. Uživajte u čaši korčulanskog vina, isprobajte morske delicije uz kapljicu božanskog maslinovog ulja i stvorite trajne uspomene na otok koji inspirira.");
+        offer5.setSubtitle("Odaberite tri noćenja za dvije osobe i dvoje djece s doručkom u modernim Apartmanima Port 9 uz mogućnost plaćanja na rate!");
+        offer5.setImageUrl("https://www.ekupon.ba/media/images/offer-image-5965_4_orig.jpg?v=1527076943");
+
+
+        for(int i = 0; i < 90; i++)
         {
             Offer offer = new Offer();
 
-            String title = dataFactory.getRandomText(150);
-            offer.setTitle(title);
-            offer.setAlias(Slug.makeSlug(title));
+            offer.setTitle(title5);
+            offer.setAlias(Slug.makeSlug(title5));
             offer.setName(dataFactory.getName());
             offer.setOfferCity(cityRepository.findByName("Sarajevo"));
             offer.setOfferContract(contractRepository.findByEmail("ermin@hotmail.com"));
@@ -120,7 +195,7 @@ public class DatabaseSeeder {
             offer.setPublished(random.nextBoolean());
             offer.setShortDescription(dataFactory.getRandomText(200));
             offer.setSubtitle(dataFactory.getRandomText(100));
-            offer.setImageUrl("https://pbs.twimg.com/profile_images/469017630796296193/R-bEN4UP.png");
+            offer.setImageUrl("https://www.ekupon.ba/media/images/offer-image-5965_6_orig.jpg?v=1527076947");
 
             offerRepository.save(offer);
         }
